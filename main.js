@@ -96,6 +96,7 @@ function doMath() {
         switch (activeOperator) {
             case '+':
                 activeNumber = parseFloat(storedNumber) + parseFloat(activeNumber);
+                // have to change rounding if result = whole number (unnecessary zeros)
                 activeNumber = activeNumber.toPrecision(5);
                 break;
             case '-':
