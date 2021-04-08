@@ -4,6 +4,7 @@ let activeNumber = '';
 let activeOperator = '';
 let storedNumber = '';
 let result = '';
+let intermediateResult = '';
 
 // if input length > 7, returns false
 function checkInputSize(input) {
@@ -96,20 +97,28 @@ function doMath() {
         switch (activeOperator) {
             case '+':
                 activeNumber = parseFloat(storedNumber) + parseFloat(activeNumber);
-                // have to change rounding if result = whole number (unnecessary zeros)
-                activeNumber = activeNumber.toPrecision(5);
+                // do i need to leave if? how it is faster??
+                if (activeNumber.toString().split('').includes('.')) {
+                    activeNumber = parseFloat(activeNumber.toPrecision(5));
+                }
                 break;
             case '-':
                 activeNumber = parseFloat(storedNumber) - parseFloat(activeNumber);
-                activeNumber = activeNumber.toPrecision(5);
+                if (activeNumber.toString().split('').includes('.')) {
+                    activeNumber = parseFloat(activeNumber.toPrecision(5));
+                }
                 break;
             case '/':
                 activeNumber = parseFloat(storedNumber) / parseFloat(activeNumber);
-                activeNumber = activeNumber.toPrecision(5);
+                if (activeNumber.toString().split('').includes('.')) {
+                    activeNumber = parseFloat(activeNumber.toPrecision(5));
+                }
                 break;
             case '*':
                 activeNumber = parseFloat(storedNumber) * parseFloat(activeNumber);
-                activeNumber = activeNumber.toPrecision(5);
+                if (activeNumber.toString().split('').includes('.')) {
+                    activeNumber = parseFloat(activeNumber.toPrecision(5));
+                }
                 break;
         }
     }
