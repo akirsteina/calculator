@@ -5,61 +5,63 @@ let activeOperator = '';
 let storedNumber = '';
 let result = '';
 
+// if input length > 7, returns false
 function checkInputSize(input) {
     return input.length < 7;
 }
 
+
 function digitIsPressed(digit) {
     result = '';
-    if (activeNumber === '0') {
+    if (activeNumber === '0') { // if activeNumber = 0, turns it to decimal 0.
         activeNumber = `0.`;
         updateScreen();
-    } else if (checkInputSize(activeNumber) === false) {
+    } else if (checkInputSize(activeNumber) === false) { // doesnt allow input size > 7
         activeNumber;
         updateScreen();
         alert('Max input length (7) exceeded')
-    } else {
+    } else { // adds next digit to activeNumber
         activeNumber += digit;
         updateScreen();
     }
 }
 
 function operatorIsPressed(operator) {
-    if (result) {
+    if (result) { // if there is already a result from previous operation, turns it to activeNumber and clears result value
         activeNumber = result;
         result = '';
     }
-    if (activeNumber === '0' && storedNumber && activeOperator === '/') {
+    if (activeNumber === '0' && storedNumber && activeOperator === '/') { // does not allow to divide by zero, clears all variable values
         clearScreen();
         alert('This time it is not allowed to divide by zero');
     }
     activeOperator = operator;
-    doMath();
+    doMath(); // only passes when there is a storedNumber as well
     storedNumber = activeNumber;
     updateScreen();
     activeNumber = '';
 }
 
 function dotIsPressed(dot) {
-    if (activeNumber === '') {
+    if (activeNumber === '') { // if activeNumber is empty but a dot button is pressed, turns input to '0.'
         activeNumber = `0${dot}`;
         updateScreen();
-    } else if (activeNumber.length >= 6) {
-        activeNumber;
+    } else if (activeNumber.length >= 6) { // doesn't allow to add dot when input length >=6
         alert('Max input length exceeded');
-    } else if (activeNumber.includes(dot)) {
         return;
-    } else {
+    } else if (activeNumber.includes(dot)) { // doesn't allow to add more than a single dot
+        return;
+    } else { // adds a single dot to input number
         activeNumber += dot;
         updateScreen();
     }
 }
 
 function equalsIsPressed() {
-    if (activeNumber === '0' && storedNumber && activeOperator === '/') {
+    if (activeNumber === '0' && storedNumber && activeOperator === '/') { // doesn't allow to divide by zero
         clearScreen();
         alert('This time it is not allowed to divide by zero');
-    } else {
+    } else { // does math and saves result, clears the rest of variable values
         doMath();
         updateScreen();
         result = activeNumber;
@@ -69,6 +71,7 @@ function equalsIsPressed() {
     }
 }
 
+// clears all variable values
 function clearScreen() {
     activeNumber = '';
     activeOperator = '';
@@ -77,11 +80,13 @@ function clearScreen() {
     updateScreen();
 }
 
+// clears last input character
 function deleteLastDigit() {
     activeNumber = activeNumber.slice(0, -1);
     updateScreen();
 }
 
+// updates the activeNumber value on screen
 function updateScreen() {
     document.getElementById('screen').innerHTML = activeNumber;
 }
