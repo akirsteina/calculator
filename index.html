@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="background">
+        <div id="screen"></div>
+
+        <div id="main">
+            <div id="first-rows">
+
+
+                <button class="del-bg" id="deleteAll" onclick="clearScreen()">CE</button>
+                <button class="btn-style del-bg num " onclick="deleteLastDigit()">&#60</button>
+
+
+                <button class="btn-style opera-bg value align operator" onclick="operatorIsPressed('+')">+</button>
+            </div>
+
+            <div class="rows">
+                <button class="btn-style num-bg num first-child" onclick="digitIsPressed('7')">7</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('8')">8</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('9')">9</button>
+                <button class="btn-style opera-bg operator" onclick="operatorIsPressed('-')">-</button>
+            </div>
+
+            <div class="rows">
+                <button class="btn-style num-bg num first-child" onclick="digitIsPressed('4')">4</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('5')">5</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('6')">6</button>
+                <button class="btn-style opera-bg operator" onclick="operatorIsPressed('*')">x</button>
+            </div>
+
+            <div class="rows">
+                <button class="btn-style num-bg num first-child" onclick="digitIsPressed('1')">1</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('2')">2</button>
+                <button class="btn-style num-bg num" onclick="digitIsPressed('3')">3</button>
+                <button class="btn-style opera-bg operator" onclick="operatorIsPressed('/')">/</button>
+            </div>
+
+            <div class="rows">
+                <button class="num-bg zero num" id="zero" onclick="digitIsPressed('0')">0</button>
+                <button class="btn-style num-bg period num fall-back" onclick="dotIsPressed('.')">.</button>
+                <button id="eqn-bg" class="eqn align" onclick="equalsIsPressed()">=</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="main.js" type="text/javascript"></script>
+</body>
+
+</html>
