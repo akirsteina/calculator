@@ -24,7 +24,6 @@ $('.num').click(function() {
 
 
 $('.operator').click(function() {
-    // ja jau iepriekš nospiests operators, tad, lai neizdzēš visu ???
     if (result) { // if there is already a result from previous operation, turns it to activeNumber and clears result value
         activeNumber = result;
         result = '';
@@ -96,7 +95,6 @@ function doMath() {
         switch (activeOperator) {
             case '+':
                 activeNumber = parseFloat(storedNumber) + parseFloat(activeNumber);
-                // do i need to leave if? how it is faster??
                 if (activeNumber.toString().split('').includes('.')) {
                     activeNumber = parseFloat(activeNumber.toPrecision(5));
                 }
